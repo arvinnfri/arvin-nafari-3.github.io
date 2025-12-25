@@ -75,7 +75,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             if (window.innerWidth <= 768) {
                 closeMenu();
             }
-            
+
             window.scrollTo({
                 top: targetElement.offsetTop - 80,
                 behavior: 'smooth'
@@ -88,7 +88,7 @@ window.addEventListener('scroll', () => {
     let current = '';
     const sections = document.querySelectorAll('section');
     const headerHeight = document.querySelector('header').offsetHeight;
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
@@ -106,13 +106,191 @@ window.addEventListener('scroll', () => {
     });
 });
 
-document.addEventListener('touchmove', function(e) {
+document.addEventListener('touchmove', function (e) {
     if (navMenu.classList.contains('active')) {
         e.preventDefault();
     }
 }, { passive: false });
 
 closeMenu();
+
+// ==================== Banner Slider ====================
+
+const sliderWrapper = document.querySelector('.slider-wrapper');
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+
+let currentSlide = 0;
+let slideInterval;
+
+function showSlide(index) {
+    if (index >= slides.length) {
+        currentSlide = 0;
+    } else if (index < 0) {
+        currentSlide = slides.length - 1;
+    } else {
+        currentSlide = index;
+    }
+
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+        slide.style.display = 'none';
+    });
+
+    slides[currentSlide].classList.add('active');
+    slides[currentSlide].style.display = 'block';
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+function startSlider() {
+    slideInterval = setInterval(nextSlide, 10000);
+}
+
+function stopSlider() {
+    clearInterval(slideInterval);
+}
+
+prevBtn.addEventListener('click', () => {
+    prevSlide();
+    stopSlider();
+    startSlider();
+});
+
+nextBtn.addEventListener('click', () => {
+    nextSlide();
+    stopSlider();
+    startSlider();
+});
+
+dots.forEach(dot => {
+    dot.addEventListener('click', function () {
+        const slideIndex = parseInt(this.getAttribute('data-slide'));
+        showSlide(slideIndex);
+        stopSlider();
+        startSlider();
+    });
+});
+
+const sliderContainer = document.querySelector('.slider-container');
+sliderContainer.addEventListener('mouseenter', stopSlider);
+sliderContainer.addEventListener('mouseleave', startSlider);
+
+sliderContainer.addEventListener('touchstart', stopSlider);
+sliderContainer.addEventListener('touchend', startSlider);
+
+function initSlider() {
+    showSlide(0);
+    startSlider();
+}
+
+document.addEventListener('DOMContentLoaded', initSlider);
+
+window.addEventListener('resize', () => {
+    stopSlider();
+    startSlider();
+});
+
+// ==================== اسلایدر ویدیوها ====================
+
+const videoSource = document.getElementById('videoSource');
+const currentVideoName = document.getElementById('currentVideoName');
+const currentVideoDesc = document.getElementById('currentVideoDesc');
+const videoDots = document.querySelectorAll('.video-dot');
+const prevVideoBtn = document.querySelector('.prev-video-btn');
+const nextVideoBtn = document.querySelector('.next-video-btn');
+const videoItems = document.querySelectorAll('.video-item');
+
+let currentVideoIndex = 0;
+
+// تابع برای تغییر ویدیو
+function changeVideo(index) {
+    // محدود کردن index
+    if (index >= videoDots.length) {
+        currentVideoIndex = 0;
+    } else if (index < 0) {
+        currentVideoIndex = videoDots.length - 1;
+    } else {
+        currentVideoIndex = index;
+    }
+
+    // دریافت اطلاعات ویدیو
+    const selectedDot = videoDots[currentVideoIndex];
+    const videoSrc = selectedDot.getAttribute('data-src');
+    const videoName = selectedDot.getAttribute('data-name');
+    const videoDesc = selectedDot.getAttribute('data-desc');
+
+    // توقف ویدیوی فعلی
+    const videoPlayer = document.querySelector('video');
+    videoPlayer.pause();
+
+    // تغییر منبع ویدیو
+    videoSource.src = videoSrc;
+
+    // تغییر اطلاعات
+    currentVideoName.textContent = videoName;
+    currentVideoDesc.textContent = videoDesc;
+
+    // بارگذاری مجدد ویدیو
+    videoPlayer.load();
+
+    // بروزرسانی وضعیت فعال
+    videoDots.forEach(dot => dot.classList.remove('active'));
+    selectedDot.classList.add('active');
+
+    // بروزرسانی ویدیو آیتم‌ها
+    videoItems.forEach(item => item.classList.remove('active'));
+    videoItems[0].classList.add('active'); // فقط اولین باکس فعال می‌ماند
+}
+
+// تابع ویدیوی بعدی
+function nextVideo() {
+    changeVideo(currentVideoIndex + 1);
+}
+
+// تابع ویدیوی قبلی
+function prevVideo() {
+    changeVideo(currentVideoIndex - 1);
+}
+
+// رویدادهای دکمه‌ها
+prevVideoBtn.addEventListener('click', prevVideo);
+nextVideoBtn.addEventListener('click', nextVideo);
+
+// رویداد کلیک روی نقاط
+videoDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        changeVideo(index);
+    });
+});
+
+// کنترل با کیبورد
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+        nextVideo();
+    } else if (e.key === 'ArrowLeft') {
+        prevVideo();
+    }
+});
+
+// راه‌اندازی اولیه
+function initVideoSlider() {
+    changeVideo(0);
+}
+
+// شروع پس از بارگذاری
+document.addEventListener('DOMContentLoaded', initVideoSlider);
 
 // ==================== Scroll progress indicator ====================
 const scrollProgressBar = document.getElementById('scrollProgressBar');
@@ -142,7 +320,7 @@ backToTop.addEventListener('click', () => {
 
 function smoothScrollToTop() {
     const currentPosition = window.scrollY;
-    
+
     if (currentPosition > 0) {
         window.requestAnimationFrame(smoothScrollToTop);
         window.scrollTo(0, currentPosition - currentPosition / 8);
@@ -151,7 +329,7 @@ function smoothScrollToTop() {
 
 backToTop.addEventListener('click', (e) => {
     e.preventDefault();
-    
+
     if ('scrollBehavior' in document.documentElement.style) {
         window.scrollTo({
             top: 0,
@@ -166,18 +344,18 @@ let scrollTimeout;
 window.addEventListener('scroll', () => {
     const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (window.scrollY / windowHeight) * 100;
-    
+
     scrollProgressBar.style.width = `${scrolled}%`;
-    
+
     if (window.scrollY > 300) {
         backToTop.classList.add('active');
     } else {
         backToTop.classList.remove('active');
     }
-    
+
     clearTimeout(scrollTimeout);
     scrollProgressBar.style.opacity = '1';
-    
+
     scrollTimeout = setTimeout(() => {
         scrollProgressBar.style.opacity = '0.7';
     }, 150);
@@ -187,7 +365,7 @@ window.dispatchEvent(new Event('scroll'));
 
 function updateProgressBarColor() {
     const scrolled = (window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
-    
+
     if (scrolled < 30) {
         scrollProgressBar.style.background = 'linear-gradient(90deg, var(--secondary-color), #e6c34a)';
     } else if (scrolled < 70) {

@@ -126,8 +126,8 @@ nav ul li a:hover {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(26, 71, 42, 0.85), rgba(13, 40, 24, 0.9)), 
-                url('images/background.webp');
+    background: linear-gradient(rgba(26, 71, 42, 0.85), rgba(13, 40, 24, 0.9)),
+        url('images/background.webp');
     background-size: cover;
     background-position: center;
     color: white;
@@ -235,6 +235,172 @@ section {
     font-size: 1.8rem;
     color: var(--accent-color);
     font-weight: 700;
+}
+
+/* ==================== Banner Slider ==================== */
+
+.banner-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--border-radius);
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212, 175, 55, 0.8);
+    color: var(--dark-color);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slider-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.prev-btn {
+    right: 15px;
+}
+
+.next-btn {
+    left: 15px;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--secondary-color);
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.slide {
+    animation: fadeIn 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .prev-btn {
+        right: 10px;
+    }
+
+    .next-btn {
+        left: 10px;
+    }
+
+    .slider-dots {
+        bottom: 15px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .prev-btn {
+        right: 8px;
+    }
+
+    .next-btn {
+        left: 8px;
+    }
+
+    .slider-dots {
+        bottom: 10px;
+    }
 }
 
 .stats {
@@ -378,9 +544,12 @@ section {
 }
 
 @keyframes ribbon-float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: rotate(45deg) translateY(0);
     }
+
     50% {
         transform: rotate(45deg) translateY(-3px);
     }
@@ -417,14 +586,14 @@ section {
         font-size: 0.75rem;
         letter-spacing: 0.5px;
     }
-    
+
     .ribbon-shadow {
         width: 160px;
         height: 35px;
         top: 2px;
         right: -4px;
     }
-    
+
     .corner-ribbon span {
         padding: 0 12px;
     }
@@ -439,14 +608,14 @@ section {
         font-size: 0.7rem;
         letter-spacing: 0;
     }
-    
+
     .ribbon-shadow {
         width: 140px;
         height: 30px;
         top: 1px;
         right: -3px;
     }
-    
+
     .corner-ribbon span {
         padding: 0 10px;
     }
@@ -460,14 +629,14 @@ section {
         line-height: 28px;
         font-size: 0.65rem;
     }
-    
+
     .ribbon-shadow {
         width: 130px;
         height: 28px;
         top: 1px;
         right: -2px;
     }
-    
+
     .corner-ribbon span {
         padding: 0 8px;
     }
@@ -481,12 +650,12 @@ section {
         line-height: 26px;
         font-size: 0.6rem;
     }
-    
+
     .ribbon-shadow {
         width: 120px;
         height: 26px;
     }
-    
+
     .corner-ribbon span {
         padding: 0 6px;
     }
@@ -538,11 +707,274 @@ section {
 }
 
 /* Testimonials */
+/* ==================== استایل‌های اسلایدر ویدیوها ==================== */
+
 .testimonials {
-    background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(13, 40, 24, 0.9)), url('https://images.unsplash.com/photo-1544919982-b61976a0d7ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(13, 40, 24, 0.9));
     color: white;
+    padding: 70px 0;
+}
+
+.video-slider-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.video-slider-wrapper {
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.video-slider {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-item {
+    min-width: 100%;
+    flex-shrink: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: opacity 0.5s ease;
+}
+
+.video-item.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    /* نسبت 16:9 */
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.video-info {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(5px);
+}
+
+.video-info h4 {
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.video-info p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* دکمه‌های کنترل ویدیو */
+.video-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212, 175, 55, 0.9);
+    color: var(--dark-color);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.video-slider-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.prev-video-btn {
+    right: -25px;
+}
+
+.next-video-btn {
+    left: -25px;
+}
+
+/* نقاط نشانگر ویدیو */
+.video-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.video-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-dot.active {
+    background: var(--secondary-color);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+}
+
+.video-dot:hover {
+    background: var(--secondary-color);
+    transform: scale(1.2);
+}
+
+/* انیمیشن‌ها */
+@keyframes fadeInVideo {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.video-item.active {
+    animation: fadeInVideo 0.5s ease forwards;
+}
+
+/* کنترل‌های ویدیوی سفارشی */
+.video-container video::-webkit-media-controls-panel {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.video-container video::-webkit-media-controls-play-button {
+    color: var(--secondary-color);
+}
+
+/* واکنش‌گرایی */
+@media (max-width: 992px) {
+    .video-slider-container {
+        padding: 0 50px;
+    }
+
+    .video-slider-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-slider-container {
+        padding: 0 40px;
+    }
+
+    .video-item {
+        padding: 15px;
+    }
+
+    .video-slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .video-dots {
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .video-dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .video-info h4 {
+        font-size: 1.3rem;
+    }
+
+    .video-info p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .video-slider-container {
+        padding: 0 30px;
+    }
+
+    .video-slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .video-dots {
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .video-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .video-info {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 375px) {
+    .video-slider-container {
+        padding: 0 20px;
+    }
+
+    .video-slider-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .video-dots {
+        gap: 6px;
+    }
+
+    .video-dot {
+        width: 8px;
+        height: 8px;
+    }
 }
 
 .testimonials .section-title h2 {
@@ -838,7 +1270,7 @@ footer {
         left: 20px;
         font-size: 1.2rem;
     }
-    
+
     .scroll-progress-container {
         height: 3px;
     }
@@ -889,16 +1321,16 @@ footer {
         margin-left: 10px;
         transition: transform 0.3s;
     }
-    
+
     .mobile-menu-btn.active {
         transform: rotate(90deg);
     }
-    
+
     .header-container {
         justify-content: space-between;
         padding: 0 15px;
     }
-    
+
     .logo {
         position: absolute;
         left: 50%;
@@ -906,17 +1338,17 @@ footer {
         width: auto;
         justify-content: center;
     }
-    
+
     .logo h1 {
         font-size: 1.3rem;
         white-space: nowrap;
     }
-    
+
     .logo .quran-icon {
         font-size: 1.5rem;
         margin-left: 8px;
     }
-    
+
     nav ul {
         display: flex;
         flex-direction: column;
@@ -934,11 +1366,11 @@ footer {
         backdrop-filter: blur(10px);
         margin: 0;
     }
-    
+
     nav ul.active {
         right: 0;
     }
-    
+
     nav ul li {
         margin: 0;
         width: 100%;
@@ -946,20 +1378,40 @@ footer {
         transform: translateX(30px);
         transition: all 0.4s ease;
     }
-    
+
     nav ul.active li {
         opacity: 1;
         transform: translateX(0);
     }
-    
-    nav ul.active li:nth-child(1) { transition-delay: 0.1s; }
-    nav ul.active li:nth-child(2) { transition-delay: 0.15s; }
-    nav ul.active li:nth-child(3) { transition-delay: 0.2s; }
-    nav ul.active li:nth-child(4) { transition-delay: 0.25s; }
-    nav ul.active li:nth-child(5) { transition-delay: 0.3s; }
-    nav ul.active li:nth-child(6) { transition-delay: 0.35s; }
-    nav ul.active li:nth-child(7) { transition-delay: 0.4s; }
-    
+
+    nav ul.active li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    nav ul.active li:nth-child(2) {
+        transition-delay: 0.15s;
+    }
+
+    nav ul.active li:nth-child(3) {
+        transition-delay: 0.2s;
+    }
+
+    nav ul.active li:nth-child(4) {
+        transition-delay: 0.25s;
+    }
+
+    nav ul.active li:nth-child(5) {
+        transition-delay: 0.3s;
+    }
+
+    nav ul.active li:nth-child(6) {
+        transition-delay: 0.35s;
+    }
+
+    nav ul.active li:nth-child(7) {
+        transition-delay: 0.4s;
+    }
+
     nav ul li a {
         display: block;
         padding: 18px 30px;
@@ -968,13 +1420,13 @@ footer {
         border-radius: 0;
         transition: all 0.3s;
     }
-    
+
     nav ul li a:hover {
         background-color: rgba(212, 175, 55, 0.15);
         padding-right: 35px;
         color: var(--secondary-color);
     }
-    
+
     /* Overlay menu*/
     .menu-overlay {
         position: fixed;
@@ -988,44 +1440,44 @@ footer {
         visibility: hidden;
         transition: all 0.3s;
     }
-    
+
     .menu-overlay.active {
         opacity: 1;
         visibility: visible;
     }
-    
+
     .hero {
         padding: 120px 0 60px;
         margin-top: 60px;
     }
-    
+
     .hero h2 {
         font-size: 1.8rem;
     }
-    
+
     .hero .quran-verse {
         font-size: 1.2rem;
         padding: 0 15px;
     }
-    
+
     section {
         padding: 50px 0;
     }
-    
+
     .section-title h2 {
         font-size: 1.8rem;
     }
-    
+
     .social-links {
         gap: 15px;
     }
-    
+
     .social-link {
         width: 45px;
         height: 45px;
         font-size: 1.3rem;
     }
-    
+
     .social-icon {
         width: 22px;
         height: 22px;
@@ -1037,48 +1489,48 @@ footer {
         flex-direction: column;
         gap: 15px;
     }
-    
+
     .course-cards,
     .method-cards {
         grid-template-columns: 1fr;
     }
-    
+
     .hero .quran-verse {
         font-size: 1.1rem;
     }
-    
+
     .contact-methods {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-info-box {
         padding: 25px 20px;
     }
-    
+
     .social-links {
         gap: 12px;
     }
-    
+
     .social-link {
         width: 42px;
         height: 42px;
         font-size: 1.2rem;
     }
-    
+
     .social-icon {
         width: 20px;
         height: 20px;
     }
-    
+
     nav ul {
         width: 80%;
     }
-    
+
     nav ul li a {
         padding: 16px 25px;
         font-size: 1.1rem;
     }
-    
+
     .logo h1 {
         font-size: 1.2rem;
     }
@@ -1088,20 +1540,20 @@ footer {
     .logo h1 {
         font-size: 1.1rem;
     }
-    
+
     .hero h2 {
         font-size: 1.6rem;
     }
-    
+
     .cta-button {
         padding: 12px 25px;
         font-size: 1.1rem;
     }
-    
+
     .section-title h2 {
         font-size: 1.6rem;
     }
-    
+
     nav ul {
         width: 85%;
     }

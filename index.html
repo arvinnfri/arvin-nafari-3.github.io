@@ -51,6 +51,7 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-title">
@@ -58,8 +59,29 @@
             </div>
 
             <div class="about-content">
-                <div class="about-img">
-                    <img src="images/baner.jpg" alt="استاد رضا زین‌الدینی">
+                <div class="about-img banner-slider">
+                    <div class="slider-container">
+                        <div class="slider-wrapper">
+                            <div class="slide active">
+                                <img src="images/banner-1.jpg" alt="استاد رضا زین‌الدینی - تصویر ۱">
+                            </div>
+                            <div class="slide">
+                                <img src="images/banner-2.jpg" alt="استاد رضا زین‌الدینی - تصویر ۲">
+                            </div>
+                        </div>
+
+                        <button class="slider-btn prev-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="slider-btn next-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+
+                        <div class="slider-dots">
+                            <span class="dot active" data-slide="0"></span>
+                            <span class="dot" data-slide="1"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="about-text">
@@ -156,7 +178,7 @@
                         </ul>
 
                         <div class="course-price">
-                            ثبت‌نام: ۲,۰۰۰,۰۰۰ تومان
+                            با پرداخت ماهانه فقط: ۲,۰۰۰,۰۰۰ تومان
                         </div>
 
                         <a href="#contact" class="cta-button"
@@ -187,7 +209,7 @@
                         </ul>
 
                         <div class="course-price">
-                            ثبت‌نام: ۲,۰۰۰,۰۰۰ تومان
+                            با پرداخت ماهانه فقط: ۲,۰۰۰,۰۰۰ تومان
                         </div>
 
                         <a href="#contact" class="cta-button"
@@ -203,36 +225,48 @@
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>گواهی شاگردان</h2>
+                <h2>ویدیوهای شاگردان</h2>
             </div>
 
-            <div class="testimonial-slider">
-                <div class="testimonial-item">
-                    <div class="testimonial-text">
-                        "با روش حفظ پایه تصویری استاد زین‌الدینی، در مدت ۱۸ ماه موفق به حفظ کل قرآن شدم. این روش واقعاً
-                        معجزه‌آساست و به هیچ‌وجه با روش‌های سنتی قابل مقایسه نیست."
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="images/person.webp" alt="شاگرد">
-                        <div>
-                            <h4>محمد حسینی</h4>
-                            <p>حافظ کل قرآن</p>
+            <div class="video-slider-container">
+                <button class="video-slider-btn prev-video-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="video-slider-wrapper">
+                    <div class="video-slider">
+                        <!-- ویدیو 1 -->
+                        <div class="video-item active">
+                            <div class="video-container">
+                                <video controls>
+                                    <source src="videos/student-1.mp4" type="video/mp4" id="videoSource">
+                                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                                </video>
+                            </div>
+                            <div class="video-info">
+                                <h4 id="currentVideoName">محمد حسینی</h4>
+                                <p id="currentVideoDesc">حافظ کل قرآن - حفظ سوره یوسف</p>
+                            </div>
                         </div>
+
+                        <!-- 4 باکس خالی دیگر برای consistency -->
+                        <div class="video-item"></div>
+                        <div class="video-item"></div>
+                        <div class="video-item"></div>
+                        <div class="video-item"></div>
                     </div>
                 </div>
 
-                <div class="testimonial-item">
-                    <div class="testimonial-text">
-                        "دوره روخوانی استاد نقطه عطف زندگی من بود. پس از سال‌ها که نمی‌توانستم قرآن را روان بخوانم، حالا
-                        با لذت و به آسانی تلاوت می‌کنم و آماده شروع حفظ هستم."
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="images/person.webp" alt="شاگرد">
-                        <div>
-                            <h4>علی شریفی</h4>
-                            <p>حافظ کل قرآن</p>
-                        </div>
-                    </div>
+                <button class="video-slider-btn next-video-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <!-- نقاط نشانگر -->
+                <div class="video-dots">
+                    <span class="video-dot active" data-video="0" data-src="videos/student-4.mp4" data-name="نام و نام خانوادگی"
+                        data-desc="حافظ ۲ جزء از قرآن کریم"></span>
+                    <span class="video-dot active" data-video="0" data-src="videos/student-5.mp4" data-name="نام و نام خانوادگی"
+                        data-desc="حافظ قرآن کریم"></span>
                 </div>
             </div>
         </div>
