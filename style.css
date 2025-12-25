@@ -410,35 +410,85 @@ section {
 
 @media (max-width: 768px) {
     .corner-ribbon {
-        top: 20px;
-        right: -55px;
-        width: 180px;
-        line-height: 45px;
-        font-size: 0.85rem;
+        top: 15px;
+        right: -45px;
+        width: 150px;
+        line-height: 35px;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
     }
     
     .ribbon-shadow {
-        width: 190px;
-        height: 45px;
+        width: 160px;
+        height: 35px;
+        top: 2px;
+        right: -4px;
+    }
+    
+    .corner-ribbon span {
+        padding: 0 12px;
     }
 }
 
 @media (max-width: 576px) {
     .corner-ribbon {
-        top: 18px;
-        right: -60px;
-        width: 160px;
-        line-height: 40px;
-        font-size: 0.8rem;
+        top: 12px;
+        right: -40px;
+        width: 130px;
+        line-height: 30px;
+        font-size: 0.7rem;
+        letter-spacing: 0;
     }
     
     .ribbon-shadow {
-        width: 170px;
-        height: 40px;
+        width: 140px;
+        height: 30px;
+        top: 1px;
+        right: -3px;
     }
     
     .corner-ribbon span {
-        padding: 0 15px;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    .corner-ribbon {
+        top: 10px;
+        right: -35px;
+        width: 120px;
+        line-height: 28px;
+        font-size: 0.65rem;
+    }
+    
+    .ribbon-shadow {
+        width: 130px;
+        height: 28px;
+        top: 1px;
+        right: -2px;
+    }
+    
+    .corner-ribbon span {
+        padding: 0 8px;
+    }
+}
+
+@media (max-width: 320px) {
+    .corner-ribbon {
+        top: 8px;
+        right: -30px;
+        width: 110px;
+        line-height: 26px;
+        font-size: 0.6rem;
+    }
+    
+    .ribbon-shadow {
+        width: 120px;
+        height: 26px;
+    }
+    
+    .corner-ribbon span {
+        padding: 0 6px;
     }
 }
 
