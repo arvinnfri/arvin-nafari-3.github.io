@@ -50,14 +50,14 @@ h4 {
 
 /* Header Styles */
 header {
-    background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(13, 40, 24, 0.9));
+    background: linear-gradient(rgba(26, 71, 42, 0.95), rgba(13, 40, 24, 0.98));
     color: white;
-    padding: 15px 0;
+    padding: 12px 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .header-container {
@@ -929,4 +929,5 @@ footer {
     nav ul {
         width: 85%;
     }
+
 }
