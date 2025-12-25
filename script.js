@@ -202,7 +202,7 @@ window.addEventListener('resize', () => {
     startSlider();
 });
 
-// ==================== اسلایدر ویدیوها ====================
+// ==================== Video Slider ====================
 
 const videoSource = document.getElementById('videoSource');
 const currentVideoName = document.getElementById('currentVideoName');
@@ -214,9 +214,7 @@ const videoItems = document.querySelectorAll('.video-item');
 
 let currentVideoIndex = 0;
 
-// تابع برای تغییر ویدیو
 function changeVideo(index) {
-    // محدود کردن index
     if (index >= videoDots.length) {
         currentVideoIndex = 0;
     } else if (index < 0) {
@@ -225,57 +223,45 @@ function changeVideo(index) {
         currentVideoIndex = index;
     }
 
-    // دریافت اطلاعات ویدیو
     const selectedDot = videoDots[currentVideoIndex];
     const videoSrc = selectedDot.getAttribute('data-src');
     const videoName = selectedDot.getAttribute('data-name');
     const videoDesc = selectedDot.getAttribute('data-desc');
 
-    // توقف ویدیوی فعلی
     const videoPlayer = document.querySelector('video');
     videoPlayer.pause();
 
-    // تغییر منبع ویدیو
     videoSource.src = videoSrc;
 
-    // تغییر اطلاعات
     currentVideoName.textContent = videoName;
     currentVideoDesc.textContent = videoDesc;
 
-    // بارگذاری مجدد ویدیو
     videoPlayer.load();
 
-    // بروزرسانی وضعیت فعال
     videoDots.forEach(dot => dot.classList.remove('active'));
     selectedDot.classList.add('active');
 
-    // بروزرسانی ویدیو آیتم‌ها
     videoItems.forEach(item => item.classList.remove('active'));
-    videoItems[0].classList.add('active'); // فقط اولین باکس فعال می‌ماند
+    videoItems[0].classList.add('active');
 }
 
-// تابع ویدیوی بعدی
 function nextVideo() {
     changeVideo(currentVideoIndex + 1);
 }
 
-// تابع ویدیوی قبلی
 function prevVideo() {
     changeVideo(currentVideoIndex - 1);
 }
 
-// رویدادهای دکمه‌ها
 prevVideoBtn.addEventListener('click', prevVideo);
 nextVideoBtn.addEventListener('click', nextVideo);
 
-// رویداد کلیک روی نقاط
 videoDots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
         changeVideo(index);
     });
 });
 
-// کنترل با کیبورد
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') {
         nextVideo();
@@ -284,12 +270,10 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// راه‌اندازی اولیه
 function initVideoSlider() {
     changeVideo(0);
 }
 
-// شروع پس از بارگذاری
 document.addEventListener('DOMContentLoaded', initVideoSlider);
 
 // ==================== Scroll progress indicator ====================
